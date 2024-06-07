@@ -1,0 +1,11 @@
+.track-analysis-input--form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  padding: 2em;
+}
+
+.track-analysis-input {
+  width: 100%;
+}
