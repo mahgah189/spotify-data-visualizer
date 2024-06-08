@@ -1,5 +1,6 @@
 import React from "react";
 import "./TrackAnalysisInput.css";
+import token from "/src/functions/api.js";
 import { useOutletContext } from "react-router-dom";
 
 function TrackAnalysisInput() {
@@ -16,8 +17,17 @@ function TrackAnalysisInput() {
     const trackUrl = new URL(e.target.form[0].value);
     const trackUrlId = trackUrl.pathname.split("/").pop();
     setTrackId(trackUrlId);
-    console.log(trackId)
-  }
+  };
+
+  React.useEffect(() => {
+    fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+      headers: {
+        "Authorization": `Bearer ${token.access_token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+  }, [trackId]);
 
   return (
     <div className="track-analysis-input--container">
