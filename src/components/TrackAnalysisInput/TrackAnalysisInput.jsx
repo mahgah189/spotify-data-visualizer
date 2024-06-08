@@ -1,6 +1,6 @@
 import React from "react";
 import "./TrackAnalysisInput.css";
-import token from "/src/functions/api.js";
+import token from "/src/api/api.js";
 import { useOutletContext } from "react-router-dom";
 
 function TrackAnalysisInput() {

@@ -45,6 +45,6 @@ async function getSpotifyAccessToken() {
 
 };
 
-const data = await getSpotifyAccessToken();
+const token = await getSpotifyAccessToken();
 
-export default data;
+export default token;

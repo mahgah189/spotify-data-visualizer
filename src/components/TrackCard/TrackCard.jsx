@@ -1,6 +1,6 @@
 import React from "react";
 import "./TrackCard.css";
-import token from "/src/functions/api.js";
+import token from "/src/api/api.js";
 
 function TrackCard() {
   fetch("https://api.spotify.com/v1/audio-features/7aGcgv4G1upG0XK6nHC5rF", {
