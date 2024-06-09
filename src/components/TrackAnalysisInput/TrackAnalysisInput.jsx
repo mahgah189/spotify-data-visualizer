@@ -4,12 +4,11 @@ import { token, canvasToken } from "/src/api/api.js";
 import getCanvas from "/src/api/canvas/_canvasApi.js";
 import { useOutletContext } from "react-router-dom";
 
-console.log(canvasToken.accessToken)
-
 function TrackAnalysisInput() {
   const { 
     trackId: [trackId, changeTrackId], 
-    trackArray: [tracksArray, changeTracksArray]
+    trackArray: [tracksArray, changeTracksArray],
+    canvas: [canvas, changeCanvas]
   } = useOutletContext();
 
   function setTrackId(id) {
@@ -45,34 +44,48 @@ function TrackAnalysisInput() {
   // This is just to view the data in the array
 
   React.useEffect(() => {
-    async function runCanvasRequest() {
-      const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
-      console.log(canvasResponse)
-      return canvasResponse;
+    const runCanvasRequest = async() => {
+      try {
+        const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
+        changeCanvas(prevCanvas => canvasResponse.canvasesList[0].canvasUrl);
+      } catch(error) {
+        console.log(error)
+      }
     };
 
-    tracksArray && runCanvasRequest().then(response => console.log(response))
+    tracksArray && runCanvasRequest();
 
   }, [tracksArray])
 
   return (
-    <div className="track-analysis-input--container">
-      <form 
-        className="track-analysis-input--form"
-        id="track-analysis-input--form"
-      >
-        <label htmlFor="track-analysis-input"></label>
-        <input
-          className="track-analysis-input"
-          name="track-analysis-input"
-          type="url"
-        />
-        <button 
-          onClick={handleSubmit}
-          type="submit"
-        >Submit</button>
-      </form>
-    </div>
+    <>
+      <div>
+        {canvas && 
+          <video 
+            autoPlay
+            loop
+          >
+            <source src={canvas} />
+          </video>}
+      </div>
+      <div className="track-analysis-input--container">
+        <form 
+          className="track-analysis-input--form"
+          id="track-analysis-input--form"
+        >
+          <label htmlFor="track-analysis-input"></label>
+          <input
+            className="track-analysis-input"
+            name="track-analysis-input"
+            type="url"
+          />
+          <button 
+            onClick={handleSubmit}
+            type="submit"
+          >Submit</button>
+        </form>
+      </div>
+    </>
   );
 };
 

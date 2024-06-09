@@ -2,7 +2,7 @@ import * as canvas from "./_canvas_pb.js";
 
 const canvasApiUrl = "https://gew1-spclient.spotify.com/canvaz-cache/v0/canvases";
 
-const getCanvas = (tracks, accessToken) => {
+const getCanvas = async (tracks, accessToken) => {
 
   // build protobuf message for canvas API
   let canvasRequest = new canvas.CanvasRequest();
@@ -14,24 +14,29 @@ const getCanvas = (tracks, accessToken) => {
   let requestBytes = canvasRequest.serializeBinary();
 
   const headers = {
-    'accept': 'application/protobuf',
-    'content-type': 'application/x-www-form-urlencoded',
-    'accept-language': 'en',
-    'user-agent': 'Spotify/8.5.49 iOS/Version 13.3.1 (Build 17D50)',
-    'accept-encoding': 'gzip, deflate, br',
-    'authorization': `Bearer ${accessToken}`,
+    "accept": "application/protobuf",
+    "content-type": "application/x-www-form-urlencoded",
+    "accept-language": "en",
+    "user-agent": "Spotify/8.5.49 iOS/Version 13.3.1 (Build 17D50)",
+    "accept-encoding": "gzip, deflate, br",
+    "authorization": `Bearer ${accessToken}`,
   }
 
   try { 
-    fetch(canvasApiUrl, {
+    const response = await fetch(canvasApiUrl, {
       method: "POST",
       headers: headers,
       body: requestBytes
-    })
-    .then(response => response.arrayBuffer())
-    .then(data => console.log(canvas.CanvasResponse.deserializeBinary(new Uint8Array(data)).toObject()))
-  } catch(error) {
-    console.log(error);
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+
+    const data = await response.arrayBuffer();
+    return canvas.CanvasResponse.deserializeBinary(new Uint8Array(data)).toObject();
+  } catch (error) {
+    console.error(error);
   }
 }
 
