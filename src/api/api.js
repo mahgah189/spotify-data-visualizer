@@ -45,18 +45,16 @@ async function getSpotifyAccessToken() {
 
 };
 
-// async function getCanvasAccessToken() {
-//   try {
-//     const response = await fetch("https://open.spotify.com/get_access_token?reason=transport&productType=web_player");
-//     return await response.json()
-//   } catch(error) {
-//     console.log(error)
-//   }
-// }
+async function getCanvasAccessToken() {
+  try {
+    const response = await fetch("https://cors-anywhere.herokuapp.com/https://open.spotify.com/get_access_token?reason=transport");
+    return await response.json()
+  } catch(error) {
+    console.log(error)
+  }
+}
 
-// const token = await getSpotifyAccessToken();
-// const canvasToken = await getCanvasAccessToken();
+const token = await getSpotifyAccessToken();
+const canvasToken = await getCanvasAccessToken();
 
-// console.log(canvasToken)
-
-export { token }
+export { token, canvasToken }

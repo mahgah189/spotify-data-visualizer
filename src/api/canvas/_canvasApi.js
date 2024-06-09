@@ -1,6 +1,6 @@
 import * as canvas from "./_canvas_pb.js";
 
-const canvasApiUrl = "https://spclient.wg.spotify.com/canvaz-cache/v0/canvases";
+const canvasApiUrl = "https://gew1-spclient.spotify.com/canvaz-cache/v0/canvases";
 
 const getCanvas = (tracks, accessToken) => {
 
@@ -23,18 +23,16 @@ const getCanvas = (tracks, accessToken) => {
   }
 
   try { 
-    fetch(canvasApiUrl, requestBytes, {
+    fetch(canvasApiUrl, {
       method: "POST",
       headers: headers,
-      responseType: "arraybuffer"
+      body: requestBytes
     })
-    .then(response => {
-      return canvas.CanvasResponse.deserializeBinary(response.data).toObject();
-    })
+    .then(response => response.arrayBuffer())
+    .then(data => console.log(canvas.CanvasResponse.deserializeBinary(new Uint8Array(data)).toObject()))
   } catch(error) {
     console.log(error);
   }
 }
 
 export default getCanvas;
-

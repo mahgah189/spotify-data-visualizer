@@ -1,8 +1,10 @@
 import React from "react";
 import "./TrackAnalysisInput.css";
-import token from "/src/api/api.js";
+import { token, canvasToken } from "/src/api/api.js";
 import getCanvas from "/src/api/canvas/_canvasApi.js";
 import { useOutletContext } from "react-router-dom";
+
+console.log(canvasToken.accessToken)
 
 function TrackAnalysisInput() {
   const { 
@@ -44,11 +46,13 @@ function TrackAnalysisInput() {
 
   React.useEffect(() => {
     async function runCanvasRequest() {
-      const canvasResponse = await getCanvas(tracksArray, token);
+      const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
+      console.log(canvasResponse)
       return canvasResponse;
     };
 
-    tracksArray && console.log(runCanvasRequest())
+    tracksArray && runCanvasRequest().then(response => console.log(response))
+
   }, [tracksArray])
 
   return (
