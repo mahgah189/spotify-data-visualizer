@@ -45,6 +45,18 @@ async function getSpotifyAccessToken() {
 
 };
 
-const token = await getSpotifyAccessToken();
+// async function getCanvasAccessToken() {
+//   try {
+//     const response = await fetch("https://open.spotify.com/get_access_token?reason=transport&productType=web_player");
+//     return await response.json()
+//   } catch(error) {
+//     console.log(error)
+//   }
+// }
 
-export default token;
+// const token = await getSpotifyAccessToken();
+// const canvasToken = await getCanvasAccessToken();
+
+// console.log(canvasToken)
+
+export { token }

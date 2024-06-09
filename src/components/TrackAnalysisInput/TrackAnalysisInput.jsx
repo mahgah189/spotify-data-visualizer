@@ -1,16 +1,24 @@
 import React from "react";
 import "./TrackAnalysisInput.css";
 import token from "/src/api/api.js";
+import getCanvas from "/src/api/canvas/_canvasApi.js";
 import { useOutletContext } from "react-router-dom";
 
 function TrackAnalysisInput() {
-  const [trackId, changeTrackId] = useOutletContext();
+  const { 
+    trackId: [trackId, changeTrackId], 
+    trackArray: [tracksArray, changeTracksArray]
+  } = useOutletContext();
 
   function setTrackId(id) {
     changeTrackId(prevId => id);
   };
 
-  // this only works on submits past the 1st. Maybe I need to use useEffect?
+  function setTracksArray(tracklist) {
+    changeTracksArray(prevArray => {
+      return [tracklist]
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,14 +28,28 @@ function TrackAnalysisInput() {
   };
 
   React.useEffect(() => {
-    fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+    trackId && fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
       headers: {
         "Authorization": `Bearer ${token.access_token}`
       }
     })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data);
+        setTracksArray(data);
+      })
   }, [trackId]);
+
+  // This is just to view the data in the array
+
+  React.useEffect(() => {
+    async function runCanvasRequest() {
+      const canvasResponse = await getCanvas(tracksArray, token);
+      return canvasResponse;
+    };
+
+    tracksArray && console.log(runCanvasRequest())
+  }, [tracksArray])
 
   return (
     <div className="track-analysis-input--container">

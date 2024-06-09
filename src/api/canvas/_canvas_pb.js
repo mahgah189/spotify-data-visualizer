@@ -1,3 +1,5 @@
+import * as jspb from 'google-protobuf';
+
 // source: _canvas.proto
 /**
  * @fileoverview
@@ -8,7 +10,6 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
@@ -1063,4 +1064,8 @@ proto.CanvasResponse.prototype.clearCanvasesList = function() {
 };
 
 
-goog.object.extend(exports, proto);
+export const CanvasRequest = proto.CanvasRequest;
+export const CanvasRequestTrack = proto.CanvasRequest.Track;
+export const CanvasResponse = proto.CanvasResponse;
+export const CanvasResponseCanvas = proto.CanvasResponse.Canvas;
+export const CanvasResponseCanvasArtist = proto.CanvasResponse.Canvas.Artist;
