@@ -11,23 +11,6 @@ function TrackAnalysisInput() {
     canvas: [canvas, changeCanvas]
   } = useOutletContext();
 
-  function setTrackId(id) {
-    changeTrackId(prevId => id);
-  };
-
-  function setTracksArray(tracklist) {
-    changeTracksArray(prevArray => {
-      return [tracklist]
-    })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const trackUrl = new URL(e.target.form[0].value);
-    const trackUrlId = trackUrl.pathname.split("/").pop();
-    setTrackId(trackUrlId);
-  };
-
   React.useEffect(() => {
     trackId && fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
       headers: {
@@ -41,31 +24,53 @@ function TrackAnalysisInput() {
       })
   }, [trackId]);
 
-  // This is just to view the data in the array
-
   React.useEffect(() => {
     const runCanvasRequest = async() => {
       try {
         const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
-        changeCanvas(prevCanvas => canvasResponse.canvasesList[0].canvasUrl);
+        setCanvas(canvasResponse.canvasesList[0].canvasUrl);
+        console.log(canvas);
       } catch(error) {
         console.log(error)
       }
     };
-
     tracksArray && runCanvasRequest();
+  }, [tracksArray]);
 
-  }, [tracksArray])
+  const setTrackId = (id) => {
+    changeTrackId(prevId => id);
+  };
+
+  const setTracksArray = (tracklist) => {
+    changeTracksArray(prevArray => [tracklist]);
+  };
+
+  const setCanvas = (canvasUrl) => {
+    changeCanvas(prevCanvas => {
+      return {
+        canvasUrl: canvasUrl
+      }
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const trackUrl = new URL(e.target.form[0].value);
+    const trackUrlId = trackUrl.pathname.split("/").pop();
+    setTrackId(trackUrlId);
+  };
 
   return (
     <>
-      <div>
-        {canvas && 
+      <div className="canvas--container">
+        {canvas.canvasUrl && 
           <video 
+            className="canvas--video"
             autoPlay
             loop
+            key={canvas.canvasUrl}
           >
-            <source src={canvas} />
+            <source src={canvas.canvasUrl} />
           </video>}
       </div>
       <div className="track-analysis-input--container">

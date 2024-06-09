@@ -9,3 +9,12 @@
 .track-analysis-input {
   width: 100%;
 }
+
+.canvas--container {
+  display: flex;
+  justify-content: center;
+}
+
+.canvas--video {
+  width: 430px;
+}
