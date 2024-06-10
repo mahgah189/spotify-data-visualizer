@@ -6,6 +6,12 @@ function LeftMenu() {
   return (
     <nav className="left-menu">
       <div className="nav-menu--main">
+        <NavLink 
+          className="site-logo"
+          to="/"
+        >
+          CAPY
+        </NavLink>
         <NavLink
           className="nav-menu--link"
           to="/"

@@ -11,13 +11,15 @@ function Layout() {
   return (
     <div className="site-wrapper">
       <LeftMenu />
-      <Outlet 
-        context={{
-          trackId: [trackId, changeTrackId],
-          trackArray: [tracksArray, changeTracksArray],
-          canvas: [canvas, changeCanvas]
-        }} 
-      />
+      <div className="layout-outlet">
+        <Outlet 
+          context={{
+            trackId: [trackId, changeTrackId],
+            trackArray: [tracksArray, changeTracksArray],
+            canvas: [canvas, changeCanvas]
+          }} 
+        />
+      </div>
     </div>
   )
 };

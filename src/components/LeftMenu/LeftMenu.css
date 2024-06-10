@@ -23,6 +23,30 @@
   text-decoration: none;
 }
 
+.site-logo {
+  display: none;
+  text-decoration: none;
+}
+
 @media (min-width: 768px) {
+
+  .left-menu {
+    position: static;
+    transform: none;
+    width: 6em;
+    padding: 3em;
+  }
+
+  .nav-menu--main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    font-weight: bold;
+    margin-top: 2em;
+  }
+
+  .site-logo {
+    display: inline-block;
+  }
 
 }

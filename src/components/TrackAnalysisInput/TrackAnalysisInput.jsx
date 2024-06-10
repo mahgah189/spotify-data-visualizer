@@ -78,12 +78,20 @@ function TrackAnalysisInput() {
           className="track-analysis-input--form"
           id="track-analysis-input--form"
         >
-          <label htmlFor="track-analysis-input"></label>
-          <input
-            className="track-analysis-input"
-            name="track-analysis-input"
-            type="url"
-          />
+          <label 
+            className="track-analysis-input--label"
+            htmlFor="track-analysis-input"
+          >
+            Search for a Song or Playlist
+          </label>
+          <div className="track-analysis-input--input-wrapper">
+            <input
+              className="track-analysis-input"
+              name="track-analysis-input"
+              type="url"
+            />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
           <button 
             onClick={handleSubmit}
             type="submit"

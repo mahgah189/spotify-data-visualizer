@@ -1,3 +1,23 @@
+.track-analysis-input {
+  background-color: #212121;
+  border: none;
+  border-radius: 2em;
+  color: #b3b3b3;
+  height: 2em;
+  width: 400px;
+  padding: 1em 2em 1em 4em;
+  caret-color: white;
+}
+
+.track-analysis-input:focus {
+  outline: 2px solid white;
+}
+
+.track-analysis-input:hover {
+  border: 1px solid #535353;
+  color: white;
+}
+
 .track-analysis-input--form {
   display: flex;
   flex-direction: column;
@@ -6,8 +26,18 @@
   padding: 2em;
 }
 
-.track-analysis-input {
-  width: 100%;
+.track-analysis-input--label {
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
+}
+
+.track-analysis-input--input-wrapper {
+  position: relative;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .canvas--container {
@@ -17,4 +47,41 @@
 
 .canvas--video {
   width: 430px;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  font-size: 1.25rem;
+  color: inherit;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 3.5%;
+}
+
+@media (min-width: 768px) {
+
+  .track-analysis-input {
+    width: 500px;
+  }
+
+  .track-analysis-input--label {
+    font-size: 2rem;
+  }
+
+  .fa-magnifying-glass {
+    left: 3%;
+  }
+
+}
+
+@media (min-width: 1080px) {
+  
+  .track-analysis-input {
+    width: 768px;
+  }
+
+  .fa-magnifying-glass {
+    left: 2.25%;
+  }
+
 }

@@ -2,4 +2,12 @@
 
 @media (min-width: 768px) {
 
+  .site-wrapper {
+    display: flex;
+  }
+
+  .layout-outlet {
+    width: 100%;
+  }
+
 }
