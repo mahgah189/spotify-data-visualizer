@@ -1,5 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import "./Layout.css";
+import LeftMenu from "/src/components/LeftMenu/LeftMenu";
 
 function Layout() {
   const [trackId, changeTrackId] = React.useState(null);
@@ -8,6 +10,7 @@ function Layout() {
 
   return (
     <div className="site-wrapper">
+      <LeftMenu />
       <Outlet 
         context={{
           trackId: [trackId, changeTrackId],
