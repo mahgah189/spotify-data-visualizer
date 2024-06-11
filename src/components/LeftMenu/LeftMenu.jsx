@@ -3,35 +3,66 @@ import { NavLink } from "react-router-dom";
 import "./LeftMenu.css";
 
 function LeftMenu() {
+
+  const handleClick = () => {
+    const leftMenu = document.getElementById("left-menu");
+
+    leftMenu.classList.contains("nav-menu--hamburger-closed") 
+      ? leftMenu.classList.remove("nav-menu--hamburger-closed") 
+      : leftMenu.classList.add("nav-menu--hamburger-closed");
+  };
+
   return (
-    <nav className="left-menu">
-      <div className="nav-menu--main">
+    <>
+      {/* The header is only visible on mobile */}
+      <header class="header">
         <NavLink 
-          className="site-logo"
+          className="header--site-logo"
           to="/"
         >
           CAPY
         </NavLink>
-        <NavLink
-          className="nav-menu--link"
-          to="/"
-          style={({ isActive }) => ({
-            color: isActive ? "white" : "#b3b3b3"
-          })}
+        <button 
+          className="nav-menu--hamburger"
+          onClick={ handleClick }
         >
-          Home
-        </NavLink>
-        <NavLink
-          className="nav-menu--link"
-          to="/about"
-          style={({ isActive }) => ({
-            color: isActive ? "white" : "#b3b3b3"
-          })}
-        >
-          About
-        </NavLink>
-      </div>
-    </nav>
+          <i className="fa-solid fa-bars"></i>
+        </button>
+      </header>
+      
+      <nav className="left-menu nav-menu--hamburger-closed" id="left-menu">
+        <div className="nav-menu--main">
+          <NavLink 
+            className="nav-menu--site-logo"
+            to="/"
+          >
+            CAPY
+          </NavLink>
+          <NavLink
+            className="nav-menu--link"
+            to="/"
+            style={({ isActive }) => ({
+              color: isActive ? "white" : "#b3b3b3"
+            })}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="nav-menu--link"
+            to="/about"
+            style={({ isActive }) => ({
+              color: isActive ? "white" : "#b3b3b3"
+            })}
+          >
+            About
+          </NavLink>
+          <i 
+            className="fa-solid fa-x"
+            onClick={ handleClick }
+          ></i>
+        </div>
+      </nav>
+    </>
   )
 };
 

@@ -1,4 +1,17 @@
 body {
   background-color: #121212;
   color: #b3b3b3;
+  margin-top: 5em;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+
+  body {
+    margin-top: 0;
+  }
+
 }

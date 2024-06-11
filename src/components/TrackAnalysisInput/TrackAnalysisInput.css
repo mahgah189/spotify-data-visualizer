@@ -3,9 +3,10 @@
   border: none;
   border-radius: 2em;
   color: #b3b3b3;
-  height: 2em;
+  font-size: 1.25rem;
+  height: 3em;
   width: 400px;
-  padding: 1em 2em 1em 4em;
+  padding: 1em 2em 1em 2.75em;
   caret-color: white;
 }
 
@@ -29,7 +30,7 @@
 .track-analysis-input--label {
   text-align: center;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5em;
 }
 
@@ -38,6 +39,18 @@
   text-align: center;
   margin-right: auto;
   margin-left: auto;
+}
+
+.track-analysis-input--submit {
+  border-radius: 1.5em;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin-top: 1.5em;
+  margin-right: auto;
+  margin-left: auto;
+  width: 7em;
+  padding: 1em;
 }
 
 .canvas--container {
@@ -55,7 +68,7 @@
   color: inherit;
   top: 50%;
   transform: translateY(-50%);
-  left: 3.5%;
+  left: 5%;
 }
 
 @media (min-width: 768px) {
@@ -69,7 +82,7 @@
   }
 
   .fa-magnifying-glass {
-    left: 3%;
+    left: 4%;
   }
 
 }
@@ -81,7 +94,15 @@
   }
 
   .fa-magnifying-glass {
-    left: 2.25%;
+    left: 3%;
+  }
+
+}
+
+@media (max-width: 470px) {
+  
+  .track-analysis-input {
+    width: 200px;
   }
 
 }

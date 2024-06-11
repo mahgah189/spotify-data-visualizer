@@ -90,9 +90,10 @@ function TrackAnalysisInput() {
               name="track-analysis-input"
               type="url"
             />
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
           </div>
           <button 
+            className="track-analysis-input--submit"
             onClick={handleSubmit}
             type="submit"
           >Submit</button>
