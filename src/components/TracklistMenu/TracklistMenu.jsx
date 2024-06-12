@@ -8,7 +8,7 @@ function TracklistMenu({ toggleMenu }) {
     <>
       <div className="tracklist-menu--open">
         <i 
-          class="fa-solid fa-angles-up"
+          className="fa-solid fa-angles-up"
           onClick={ () => toggleMenu(tracklistMenuToggle, switchTracklistMenuToggle) }
         ></i>
       </div>
@@ -16,6 +16,10 @@ function TracklistMenu({ toggleMenu }) {
         <header className="tracklist-menu--header">
           <i 
             className="fa-solid fa-angles-down"
+            onClick={ () => toggleMenu(tracklistMenuToggle, switchTracklistMenuToggle) }
+          ></i>
+          <i 
+            className="fa-solid fa-angles-right"
             onClick={ () => toggleMenu(tracklistMenuToggle, switchTracklistMenuToggle) }
           ></i>
         </header>
