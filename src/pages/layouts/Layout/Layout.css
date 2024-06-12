@@ -11,3 +11,11 @@
   }
 
 }
+
+@media (max-width: 768px) {
+
+  .hamburger-closed {
+    display: none;
+  }
+
+}

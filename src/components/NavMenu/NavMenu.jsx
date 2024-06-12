@@ -1,21 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./LeftMenu.css";
+import "./NavMenu.css";
 
-function LeftMenu() {
-
-  const handleClick = () => {
-    const leftMenu = document.getElementById("left-menu");
-
-    leftMenu.classList.contains("nav-menu--hamburger-closed") 
-      ? leftMenu.classList.remove("nav-menu--hamburger-closed") 
-      : leftMenu.classList.add("nav-menu--hamburger-closed");
-  };
+function LeftMenu({ toggleMenu }) {
+  const [navMenuToggle, switchNavMenuToggle] = React.useState("hamburger-closed");
 
   return (
     <>
       {/* The header is only visible on mobile */}
-      <header class="header">
+      <header className="header">
         <NavLink 
           className="header--site-logo"
           to="/"
@@ -24,13 +17,15 @@ function LeftMenu() {
         </NavLink>
         <button 
           className="nav-menu--hamburger"
-          onClick={ handleClick }
+          onClick={ () => toggleMenu(navMenuToggle, switchNavMenuToggle) }
         >
           <i className="fa-solid fa-bars"></i>
         </button>
       </header>
-      
-      <nav className="left-menu nav-menu--hamburger-closed" id="left-menu">
+
+      <nav 
+        className={`nav-menu--container ${navMenuToggle}`}
+      >
         <div className="nav-menu--main">
           <NavLink 
             className="nav-menu--site-logo"
@@ -58,7 +53,7 @@ function LeftMenu() {
           </NavLink>
           <i 
             className="fa-solid fa-x"
-            onClick={ handleClick }
+            onClick={ () => toggleMenu(navMenuToggle, switchNavMenuToggle) }
           ></i>
         </div>
       </nav>
