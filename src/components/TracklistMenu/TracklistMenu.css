@@ -1,5 +1,33 @@
-.tracklist-menu-container {
+.tracklist-menu--container {
   background-color: black;
   height: 100vh;
   position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+
+}
+
+.tracklist-menu--header {
+  display: grid;
+  grid-template: 1fr / 1fr auto;
+}
+
+.fa-angles-up,
+.fa-angles-down {
+  font-size: 2.5rem;
+  padding: 0.5em;
+}
+
+.fa-angles-down {
+  grid-column: -1;
+  padding: 1em;
+}
+
+.tracklist-menu--open {
+  background-color: black;
+  border-radius: 0.5em;
+  bottom: 0;
+  position: fixed;
+  right: 5%;
 }

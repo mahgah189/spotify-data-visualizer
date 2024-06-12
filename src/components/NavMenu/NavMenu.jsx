@@ -24,7 +24,7 @@ function LeftMenu({ toggleMenu }) {
       </header>
 
       <nav 
-        className={`nav-menu--container ${navMenuToggle}`}
+        className={ `nav-menu--container ${navMenuToggle}` }
       >
         <div className="nav-menu--main">
           <NavLink 
