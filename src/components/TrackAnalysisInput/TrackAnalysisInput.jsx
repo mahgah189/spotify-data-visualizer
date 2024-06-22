@@ -2,7 +2,7 @@ import React from "react";
 import "./TrackAnalysisInput.css";
 import { token, canvasToken } from "/src/api/api.js";
 import getCanvas from "/src/api/canvas/_canvasApi.js";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 function TrackAnalysisInput() {
   const { 
@@ -10,6 +10,8 @@ function TrackAnalysisInput() {
     trackArray: [tracksArray, changeTracksArray],
     canvas: [canvas, changeCanvas]
   } = useOutletContext();
+
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     trackId && fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
@@ -30,6 +32,7 @@ function TrackAnalysisInput() {
         const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
         setCanvas(canvasResponse.canvasesList[0].canvasUrl);
         console.log(canvas);
+        navigate("/stats");
       } catch(error) {
         console.log(error)
       }
@@ -62,17 +65,6 @@ function TrackAnalysisInput() {
 
   return (
     <>
-      <div className="canvas--container">
-        {canvas.canvasUrl && 
-          <video 
-            className="canvas--video"
-            autoPlay
-            loop
-            key={canvas.canvasUrl}
-          >
-            <source src={canvas.canvasUrl} />
-          </video>}
-      </div>
       <div className="track-analysis-input--container">
         <form 
           className="track-analysis-input--form"

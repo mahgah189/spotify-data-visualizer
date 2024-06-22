@@ -8,7 +8,7 @@ function TracklistMenu({ toggleMenu }) {
     <>
       <div className="tracklist-menu--open">
         <i 
-          className="fa-solid fa-angles-up"
+          className={`fa-solid fa-angles-up ${tracklistMenuToggle === "hamburger-closed" ? "" : "hide-icon"}`}
           onClick={ () => toggleMenu(tracklistMenuToggle, switchTracklistMenuToggle) }
         ></i>
       </div>

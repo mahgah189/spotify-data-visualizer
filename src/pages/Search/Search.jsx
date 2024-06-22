@@ -1,8 +1,8 @@
 import React from "react";
-import "./Home.css";
+import "./Search.css";
 import TrackAnalysisInput from "/src/components/TrackAnalysisInput/TrackAnalysisInput";
 
-function Home() {
+function Search() {
   
   return (
     <div>
@@ -11,4 +11,4 @@ function Home() {
   )
 };
 
-export default Home;
+export default Search;

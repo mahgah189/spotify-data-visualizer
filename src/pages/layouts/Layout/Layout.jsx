@@ -27,7 +27,6 @@ function Layout() {
           }} 
         />
       </div>
-      <TracklistMenu toggleMenu={ toggleMenu } />
     </div>
   )
 };
