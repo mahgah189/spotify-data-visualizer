@@ -6,25 +6,17 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 
 function TrackAnalysisInput() {
   const { 
-    trackId: [trackId, changeTrackId], 
+    trackId: [currentTrackId, changeCurrentTrackId], 
     trackArray: [tracksArray, changeTracksArray],
-    canvas: [canvas, changeCanvas]
+    canvas: [canvas, changeCanvas],
+    retrieveTrackData
   } = useOutletContext();
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    trackId && fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
-      headers: {
-        "Authorization": `Bearer ${token.access_token}`
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setTracksArray(data);
-      })
-  }, [trackId]);
+    currentTrackId && retrieveTrackData(token.access_token, currentTrackId, setTracksArray);
+  }, [currentTrackId]);
 
   React.useEffect(() => {
     const runCanvasRequest = async() => {
@@ -41,7 +33,7 @@ function TrackAnalysisInput() {
   }, [tracksArray]);
 
   const setTrackId = (id) => {
-    changeTrackId(prevId => id);
+    changeCurrentTrackId(prevId => id);
   };
 
   const setTracksArray = (tracklist) => {

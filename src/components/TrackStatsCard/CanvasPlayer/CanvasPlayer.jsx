@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router-dom";
 
 function CanvasPlayer() {
   const { 
-    trackId: [trackId, changeTrackId], 
+    trackId: [currentTrackId, changeCurrentTrackId], 
     trackArray: [tracksArray, changeTracksArray],
     canvas: [canvas, changeCanvas]
   } = useOutletContext();

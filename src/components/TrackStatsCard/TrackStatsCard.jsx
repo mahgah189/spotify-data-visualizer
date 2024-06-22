@@ -5,7 +5,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 
 function TrackStatsCard() {
   const { 
-    trackId: [trackId, changeTrackId], 
+    trackId: [currentTrackId, changeCurrentTrackId], 
     trackArray: [tracksArray, changeTracksArray],
     canvas: [canvas, changeCanvas]
   } = useOutletContext();
