@@ -1,8 +1,10 @@
 import React from "react";
 import "./TracklistMenu.css";
+import { useOutletContext } from "react-router-dom";
 
-function TracklistMenu({ toggleMenu }) {
+function TracklistMenu() {
   const [tracklistMenuToggle, switchTracklistMenuToggle] = React.useState("hamburger-closed");
+  const { toggleMenu } = useOutletContext();
 
   return (
     <>
@@ -16,10 +18,6 @@ function TracklistMenu({ toggleMenu }) {
         <header className="tracklist-menu--header">
           <i 
             className="fa-solid fa-angles-down"
-            onClick={ () => toggleMenu(tracklistMenuToggle, switchTracklistMenuToggle) }
-          ></i>
-          <i 
-            className="fa-solid fa-angles-right"
             onClick={ () => toggleMenu(tracklistMenuToggle, switchTracklistMenuToggle) }
           ></i>
         </header>

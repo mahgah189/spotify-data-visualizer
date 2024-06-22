@@ -1,8 +1,19 @@
 .canvas--container {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .canvas--video {
-  width: 430px;
+  position: absolute;
+  max-width: 430px;
+  padding: 2.5em;
+}
+
+@media(min-width: 768px) {
+
+  .canvas--video {
+    padding: 0; 
+  }
+
 }

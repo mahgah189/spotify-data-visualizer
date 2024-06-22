@@ -17,9 +17,11 @@ function TrackStatsCard() {
   }, [])
 
   return (
-    <>
-      <CanvasPlayer />
-    </>
+    <div className="music-stats--container">
+      <div className="music-stats--canvas-wrapper">
+        <CanvasPlayer />
+      </div>
+    </div>
   )
 };
 

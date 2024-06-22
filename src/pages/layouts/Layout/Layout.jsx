@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import "./Layout.css";
 import NavMenu from "/src/components/NavMenu/NavMenu";
-import TracklistMenu from "/src/components/TracklistMenu/TracklistMenu";
 
 function Layout() {
   const [trackId, changeTrackId] = React.useState(null);
@@ -23,7 +22,8 @@ function Layout() {
           context={{
             trackId: [trackId, changeTrackId],
             trackArray: [tracksArray, changeTracksArray],
-            canvas: [canvas, changeCanvas]
+            canvas: [canvas, changeCanvas],
+            toggleMenu: toggleMenu
           }} 
         />
       </div>
