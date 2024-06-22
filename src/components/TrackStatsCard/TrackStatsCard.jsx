@@ -1,7 +1,7 @@
 import React from "react";
 import "./TrackStatsCard.css";
 import CanvasPlayer from "./CanvasPlayer/CanvasPlayer";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 function TrackStatsCard() {
   const { 
@@ -9,6 +9,12 @@ function TrackStatsCard() {
     trackArray: [tracksArray, changeTracksArray],
     canvas: [canvas, changeCanvas]
   } = useOutletContext();
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    !tracksArray && navigate("/")
+  }, [])
 
   return (
     <>
