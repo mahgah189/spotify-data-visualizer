@@ -1,22 +1,28 @@
 .track-analysis-input {
-  background-color: #212121;
+  background-color: rgba(18, 18, 18, 0.2);
   border: none;
   border-radius: 2em;
-  color: #b3b3b3;
+  caret-color: white;
+  color: #c7c7c7;
   font-size: 1.25rem;
   height: 3em;
-  width: 400px;
   padding: 1em 2em 1em 2.75em;
-  caret-color: white;
+  transition: background-color 0.1s;
+  width: 400px;
 }
 
 .track-analysis-input:focus {
-  outline: 2px solid white;
+  outline: none;
 }
 
 .track-analysis-input:hover {
   border: 1px solid #535353;
-  color: white;
+}
+
+.track-analysis-input:hover,
+.track-analysis-input:focus {
+  background-color: rgba(18, 18, 18, 0.5);
+  color: #e8e8e8
 }
 
 .track-analysis-input--form {
@@ -42,6 +48,7 @@
 }
 
 .track-analysis-input--submit {
+  border: none;
   border-radius: 1.5em;
   font-size: 1.25rem;
   font-weight: bold;
@@ -74,7 +81,7 @@
 @media (min-width: 768px) {
 
   .track-analysis-input {
-    width: 500px;
+    max-width: 1080px;
   }
 
   .track-analysis-input--label {

@@ -23,9 +23,7 @@ function LeftMenu({ toggleMenu }) {
         </button>
       </header>
 
-      <nav 
-        className={ `nav-menu--container ${navMenuToggle}` }
-      >
+      <nav className={ `nav-menu--container ${navMenuToggle}` }>
         <div className="nav-menu--main">
           <NavLink 
             className="nav-menu--site-logo"
@@ -33,24 +31,26 @@ function LeftMenu({ toggleMenu }) {
           >
             CAPY
           </NavLink>
-          <NavLink
-            className="nav-menu--link"
-            to="/"
-            style={({ isActive }) => ({
-              color: isActive ? "white" : "#b3b3b3"
-            })}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            className="nav-menu--link"
-            to="/about"
-            style={({ isActive }) => ({
-              color: isActive ? "white" : "#b3b3b3"
-            })}
-          >
-            About
-          </NavLink>
+          <div className="nav-menu--links-container">
+            <NavLink
+              className="nav-menu--link"
+              to="/"
+              style={({ isActive }) => ({
+                color: isActive ? "white" : "#e8e8e8"
+              })}
+            >
+              Search
+            </NavLink>
+            <NavLink
+              className="nav-menu--link"
+              to="/about"
+              style={({ isActive }) => ({
+                color: isActive ? "white" : "#e8e8e8"
+              })}
+            >
+              FAQ
+            </NavLink>
+          </div>
           <i 
             className="fa-solid fa-x"
             onClick={ () => toggleMenu(navMenuToggle, switchNavMenuToggle) }

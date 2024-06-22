@@ -4,6 +4,7 @@
 
   .site-wrapper {
     display: flex;
+    flex-direction: column;
   }
 
   .layout-outlet {

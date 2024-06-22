@@ -53,6 +53,7 @@
   }
 
   .tracklist-menu--container {
+    display: none;
     position: relative;
   }
 

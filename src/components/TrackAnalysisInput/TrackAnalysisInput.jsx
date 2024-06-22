@@ -86,6 +86,7 @@ function TrackAnalysisInput() {
           </label>
           <div className="track-analysis-input--input-wrapper">
             <input
+              autoComplete="off"
               className="track-analysis-input"
               name="track-analysis-input"
               type="url"
