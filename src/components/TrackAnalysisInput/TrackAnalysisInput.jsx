@@ -1,21 +1,22 @@
 import React from "react";
 import "./TrackAnalysisInput.css";
-import { token, canvasToken } from "/src/api/api.js";
+import { token, canvasToken } from "/src/api/apiAuth.js";
 import getCanvas from "/src/api/canvas/_canvasApi.js";
 import { useOutletContext, useNavigate } from "react-router-dom";
+import { retrieveTrackData, updateCurrentTrackData, retrieveArtistData } from "/src/api/apiFunctions.js";
 
 function TrackAnalysisInput() {
   const { 
     trackId: [currentTrackId, changeCurrentTrackId], 
     trackArray: [tracksArray, changeTracksArray],
     canvas: [canvas, changeCanvas],
-    retrieveTrackData
   } = useOutletContext();
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
     currentTrackId && retrieveTrackData(token.access_token, currentTrackId, setTracksArray);
+    currentTrackId && retrieveArtistData(token.access_token, ["7vvicoei9BbKpZix8qSeLg", "1GuqTQbuixFHD6eBkFwVcb"])
   }, [currentTrackId]);
 
   React.useEffect(() => {
@@ -37,7 +38,12 @@ function TrackAnalysisInput() {
   };
 
   const setTracksArray = (tracklist) => {
-    changeTracksArray(prevArray => [tracklist]);
+    const tracksUriArray = tracklist.map((track) => {
+      return {
+        uri: track.uri
+      }
+    });
+    changeTracksArray(prevArray => tracksUriArray);
   };
 
   const setCanvas = (canvasUrl) => {

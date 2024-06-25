@@ -37,57 +37,6 @@ function Layout() {
     }
   });
 
-  const retrieveTrackData = async (accessToken, trackId, updateTrackArray) => {
-    try {
-      const settings = {
-        headers: {
-          "Authorization": `Bearer ${accessToken}`
-        }
-      };
-      const response = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, settings);
-      const data = await response.json();
-      console.log(data);
-      updateTrackArray(data);
-    } catch(error) {
-      console.log(error);
-    }
-  };
-
-  // this is incomplete. Need to also make API calls for track features
-
-  // const updateCurrentTrackData = (trackData, trackDataUpdateFunction) => {
-  //   trackDataUpdateFunction(prevTrackData => {
-  //     return {
-  //       trackData: {
-  //         trackAlbum: trackData.album.name,
-  //         trackArtists: [
-  //           {
-  //             artistId: null,
-  //             artistName: null,
-  //             artistImages: null,
-  //             artistGenres: null
-  //           }
-  //         ],
-  //         trackId: trackData.id,
-  //         trackName: trackData.name,
-  //         trackStats: {
-  //           trackAcousticness: null,
-  //           trackDanceability: null,
-  //           trackDuration: null,
-  //           trackEnergy: null,
-  //           trackKey: null,
-  //           trackLoudness: null,
-  //           trackPopularity: null,
-  //           trackSpeechiness: null,
-  //           trackTempo: null,
-  //           trackTimeSignature: null,
-  //           trackValence: null
-  //         }
-  //       }
-  //     }
-  //   })
-  // };
-
   const toggleMenu = (menuState, setMenuState) => {
     menuState === "hamburger-closed" 
       ? setMenuState("") 
@@ -104,7 +53,6 @@ function Layout() {
             trackArray: [tracksArray, changeTracksArray],
             canvas: [canvas, changeCanvas],
             toggleMenu: toggleMenu,
-            retrieveTrackData: retrieveTrackData
           }} 
         />
       </div>
