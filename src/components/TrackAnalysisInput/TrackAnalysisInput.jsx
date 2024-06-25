@@ -3,7 +3,7 @@ import "./TrackAnalysisInput.css";
 import { token, canvasToken } from "/src/api/apiAuth.js";
 import getCanvas from "/src/api/canvas/_canvasApi.js";
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { retrieveTrackData, updateCurrentTrackData, retrieveArtistData } from "/src/api/apiFunctions.js";
+import { retrieveTrackData, updateCurrentTrackData, retrieveArtistData, retrieveTrackFeatures } from "/src/api/apiFunctions.js";
 
 function TrackAnalysisInput() {
   const { 
@@ -15,8 +15,19 @@ function TrackAnalysisInput() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    currentTrackId && retrieveTrackData(token.access_token, currentTrackId, setTracksArray);
-    currentTrackId && retrieveArtistData(token.access_token, ["7vvicoei9BbKpZix8qSeLg", "1GuqTQbuixFHD6eBkFwVcb"])
+    const extractTrackData = async () => {
+      const trackData = await retrieveTrackData(token.access_token, currentTrackId);
+      const artistsIdArray = trackData.artists.map((artist) => {
+        return artist.id;
+      }); 
+      const artistData = await retrieveArtistData(token.access_token, artistsIdArray);
+      const trackFeatures = await retrieveTrackFeatures(token.access_token, currentTrackId);
+      setTracksArray([{
+        uri: trackData.uri
+      }]);
+    };
+
+    currentTrackId && extractTrackData();    
   }, [currentTrackId]);
 
   React.useEffect(() => {
@@ -30,6 +41,7 @@ function TrackAnalysisInput() {
         console.log(error)
       }
     };
+    
     tracksArray && runCanvasRequest();
   }, [tracksArray]);
 
@@ -37,13 +49,8 @@ function TrackAnalysisInput() {
     changeCurrentTrackId(prevId => id);
   };
 
-  const setTracksArray = (tracklist) => {
-    const tracksUriArray = tracklist.map((track) => {
-      return {
-        uri: track.uri
-      }
-    });
-    changeTracksArray(prevArray => tracksUriArray);
+  const setTracksArray = (tracklistArray) => {
+    changeTracksArray(prevArray => tracklistArray);
   };
 
   const setCanvas = (canvasUrl) => {
