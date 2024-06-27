@@ -6,5 +6,8 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     include: ['google-protobuf']
-  }
+  },
+  build:{
+    target: "esnext" // or "es2019",
+   }
 })
