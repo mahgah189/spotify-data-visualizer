@@ -10,6 +10,7 @@ function TrackAnalysisInput() {
     trackId: [currentTrackId, changeCurrentTrackId], 
     trackArray: [tracksArray, changeTracksArray],
     canvas: [canvas, changeCanvas],
+    currentTrack: [currentTrackData, changeCurrentTrackData],
   } = useOutletContext();
 
   const navigate = useNavigate();
@@ -22,12 +23,13 @@ function TrackAnalysisInput() {
       }); 
       const artistData = await retrieveArtistData(token.access_token, artistsIdArray);
       const trackFeatures = await retrieveTrackFeatures(token.access_token, currentTrackId);
+      updateCurrentTrackData(trackData, trackFeatures, artistData, changeCurrentTrackData);
       setTracksArray([{
         uri: trackData.uri
       }]);
     };
 
-    currentTrackId && extractTrackData();    
+    currentTrackId && extractTrackData();  
   }, [currentTrackId]);
 
   React.useEffect(() => {
@@ -35,7 +37,6 @@ function TrackAnalysisInput() {
       try {
         const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
         setCanvas(canvasResponse.canvasesList[0].canvasUrl);
-        console.log(canvas);
         navigate("/stats");
       } catch(error) {
         console.log(error)
@@ -44,6 +45,10 @@ function TrackAnalysisInput() {
     
     tracksArray && runCanvasRequest();
   }, [tracksArray]);
+
+  React.useEffect(() => {
+    console.log(currentTrackData)
+  }, [currentTrackData])
 
   const setTrackId = (id) => {
     changeCurrentTrackId(prevId => id);

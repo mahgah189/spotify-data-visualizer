@@ -53,11 +53,10 @@ const retrieveArtistData = async (accessToken, artistIdArray) => {
   });
 
   const resolvedArtistData = await Promise.all(artistDataArray)
-  console.log(resolvedArtistData);
+  return resolvedArtistData;
 };
 
 const updateCurrentTrackData = (trackData, trackFeatures, artistDataArray, trackDataUpdateFunction) => {
-
   trackDataUpdateFunction(prevTrackData => {
     return {
       trackData: {
@@ -66,21 +65,21 @@ const updateCurrentTrackData = (trackData, trackFeatures, artistDataArray, track
         trackId: trackData.id,
         trackName: trackData.name,
         trackStats: {
-          trackAcousticness: null,
-          trackDanceability: null,
-          trackDuration: null,
-          trackEnergy: null,
-          trackKey: null,
-          trackLoudness: null,
-          trackPopularity: null,
-          trackSpeechiness: null,
-          trackTempo: null,
-          trackTimeSignature: null,
-          trackValence: null
+          trackAcousticness: trackFeatures.acousticness,
+          trackDanceability: trackFeatures.danceability,
+          trackDuration: trackFeatures.duration_ms,
+          trackEnergy: trackFeatures.energy,
+          trackKey: trackFeatures.key,
+          trackLoudness: trackFeatures.loudness,
+          trackPopularity: trackData.popularity,
+          trackSpeechiness: trackFeatures.speechiness,
+          trackTempo: trackFeatures.tempo,
+          trackTimeSignature: trackFeatures.time_signature,
+          trackValence: trackFeatures.valence
         }
       }
-    }
-  })
+    };
+  });
 };
 
 export { retrieveTrackData, updateCurrentTrackData, retrieveTrackFeatures, retrieveArtistData };

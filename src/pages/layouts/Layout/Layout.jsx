@@ -7,7 +7,6 @@ function Layout() {
   const [currentTrackId, changeCurrentTrackId] = React.useState(null);
   const [tracksArray, changeTracksArray] = React.useState(null);
   const [canvas, changeCanvas] = React.useState({})
-
   const [currentTrackData, changeCurrentTrackData] = React.useState({
     trackData: {
       trackAlbum: null,
@@ -52,6 +51,7 @@ function Layout() {
             trackId: [currentTrackId, changeCurrentTrackId],
             trackArray: [tracksArray, changeTracksArray],
             canvas: [canvas, changeCanvas],
+            currentTrack: [currentTrackData, changeCurrentTrackData],
             toggleMenu: toggleMenu,
           }} 
         />
