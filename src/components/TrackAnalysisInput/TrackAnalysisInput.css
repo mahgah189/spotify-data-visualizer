@@ -1,3 +1,30 @@
+.track-analysis-input {
+  background-color: rgba(18, 18, 18, 0.2);
+  border: none;
+  border-radius: 2em;
+  caret-color: white;
+  color: #c7c7c7;
+  font-size: 1.1rem;
+  height: 3em;
+  padding: 1em 2em 1em 2.75em;
+  transition: background-color 0.1s;
+  width: 400px;
+}
+
+.track-analysis-input:focus {
+  outline: none;
+}
+
+.track-analysis-input:hover {
+  border: 1px solid #535353;
+}
+
+.track-analysis-input:hover,
+.track-analysis-input:focus {
+  background-color: rgba(18, 18, 18, 0.5);
+  color: #e8e8e8
+}
+
 .track-analysis-input--form {
   display: flex;
   flex-direction: column;
@@ -6,15 +33,74 @@
   padding: 2em;
 }
 
-.track-analysis-input {
-  width: 100%;
+.track-analysis-input--label {
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
 }
 
-.canvas--container {
-  display: flex;
-  justify-content: center;
+.track-analysis-input--input-wrapper {
+  position: relative;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.canvas--video {
-  width: 430px;
+.track-analysis-input--submit {
+  border: none;
+  border-radius: 1.5em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin-top: 1.5em;
+  margin-right: auto;
+  margin-left: auto;
+  width: 7em;
+  padding: 1em;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  font-size: 1.25rem;
+  color: inherit;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5%;
+}
+
+@media (min-width: 768px) {
+
+  .track-analysis-input {
+    max-width: 1080px;
+  }
+
+  .track-analysis-input--label {
+    font-size: 2rem;
+  }
+
+  .fa-magnifying-glass {
+    left: 4%;
+  }
+
+}
+
+@media (min-width: 1080px) {
+  
+  .track-analysis-input {
+    width: 768px;
+  }
+
+  .fa-magnifying-glass {
+    left: 3%;
+  }
+
+}
+
+@media (max-width: 470px) {
+  
+  .track-analysis-input {
+    width: 200px;
+  }
+
 }

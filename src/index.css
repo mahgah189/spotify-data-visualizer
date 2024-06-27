@@ -1,0 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  height: 100vh;
+}

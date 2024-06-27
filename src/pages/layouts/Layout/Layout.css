@@ -1,0 +1,22 @@
+
+
+@media (min-width: 768px) {
+
+  .site-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout-outlet {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .hamburger-closed {
+    display: none;
+  }
+
+}

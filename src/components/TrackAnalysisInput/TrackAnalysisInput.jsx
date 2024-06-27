@@ -1,48 +1,61 @@
 import React from "react";
 import "./TrackAnalysisInput.css";
-import { token, canvasToken } from "/src/api/api.js";
+import { token, canvasToken } from "/src/api/apiAuth.js";
 import getCanvas from "/src/api/canvas/_canvasApi.js";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { retrieveTrackData, updateCurrentTrackData, retrieveArtistData, retrieveTrackFeatures } from "/src/api/apiFunctions.js";
 
 function TrackAnalysisInput() {
   const { 
-    trackId: [trackId, changeTrackId], 
+    trackId: [currentTrackId, changeCurrentTrackId], 
     trackArray: [tracksArray, changeTracksArray],
-    canvas: [canvas, changeCanvas]
+    canvas: [canvas, changeCanvas],
+    currentTrack: [currentTrackData, changeCurrentTrackData],
   } = useOutletContext();
 
+  const navigate = useNavigate();
+
   React.useEffect(() => {
-    trackId && fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
-      headers: {
-        "Authorization": `Bearer ${token.access_token}`
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setTracksArray(data);
-      })
-  }, [trackId]);
+    const extractTrackData = async () => {
+      const trackData = await retrieveTrackData(token.access_token, currentTrackId);
+      const artistsIdArray = trackData.artists.map((artist) => {
+        return artist.id;
+      }); 
+      const artistData = await retrieveArtistData(token.access_token, artistsIdArray);
+      const trackFeatures = await retrieveTrackFeatures(token.access_token, currentTrackId);
+      updateCurrentTrackData(trackData, trackFeatures, artistData, changeCurrentTrackData);
+      setTracksArray([{
+        uri: trackData.uri
+      }]);
+    };
+
+    currentTrackId && extractTrackData();  
+  }, [currentTrackId]);
 
   React.useEffect(() => {
     const runCanvasRequest = async() => {
       try {
         const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
         setCanvas(canvasResponse.canvasesList[0].canvasUrl);
-        console.log(canvas);
+        navigate("/stats");
       } catch(error) {
         console.log(error)
       }
     };
+    
     tracksArray && runCanvasRequest();
   }, [tracksArray]);
 
+  React.useEffect(() => {
+    console.log(currentTrackData)
+  }, [currentTrackData])
+
   const setTrackId = (id) => {
-    changeTrackId(prevId => id);
+    changeCurrentTrackId(prevId => id);
   };
 
-  const setTracksArray = (tracklist) => {
-    changeTracksArray(prevArray => [tracklist]);
+  const setTracksArray = (tracklistArray) => {
+    changeTracksArray(prevArray => tracklistArray);
   };
 
   const setCanvas = (canvasUrl) => {
@@ -62,29 +75,28 @@ function TrackAnalysisInput() {
 
   return (
     <>
-      <div className="canvas--container">
-        {canvas.canvasUrl && 
-          <video 
-            className="canvas--video"
-            autoPlay
-            loop
-            key={canvas.canvasUrl}
-          >
-            <source src={canvas.canvasUrl} />
-          </video>}
-      </div>
       <div className="track-analysis-input--container">
         <form 
           className="track-analysis-input--form"
           id="track-analysis-input--form"
         >
-          <label htmlFor="track-analysis-input"></label>
-          <input
-            className="track-analysis-input"
-            name="track-analysis-input"
-            type="url"
-          />
+          <label 
+            className="track-analysis-input--label"
+            htmlFor="track-analysis-input"
+          >
+            Search for a Song or Playlist
+          </label>
+          <div className="track-analysis-input--input-wrapper">
+            <input
+              autoComplete="off"
+              className="track-analysis-input"
+              name="track-analysis-input"
+              type="url"
+            />
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </div>
           <button 
+            className="track-analysis-input--submit"
             onClick={handleSubmit}
             type="submit"
           >Submit</button>
