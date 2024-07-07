@@ -11,6 +11,7 @@ module.exports = {
     "google",
   ],
   rules: {
+    "indent": "off",
     "no-restricted-globals": ["error", "name", "length"],
     "prefer-arrow-callback": "error",
     "quotes": ["error", "double", {"allowTemplateLiterals": true}],
@@ -22,6 +23,12 @@ module.exports = {
         mocha: true,
       },
       rules: {},
+    },
+    {
+      files: ["./index.js"],
+      rules: {
+        "max-len": ["off"],
+      },
     },
   ],
   globals: {},
