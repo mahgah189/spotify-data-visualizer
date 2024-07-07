@@ -1,8 +1,18 @@
 const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
+const corsAnywhere = require("cors-anywhere");
 const cors = require("cors")({origin: true});
 
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
+
+const corsServer = corsAnywhere.createServer({
+  originWhitelist: [
+    "http://localhost:5173",
+    "https://dansen.web.app",
+  ],
+  requireHeader: ["origin", "x-requested-with"],
+  removeHeaders: ["cookie", "cookie2"],
+});
 
 const getSpotifyAccessToken = async (clientId, clientSecret) => {
   const headers = {
@@ -11,7 +21,6 @@ const getSpotifyAccessToken = async (clientId, clientSecret) => {
   // eslint-disable max-len
   const body = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`;
   // eslint-disable max-len
-
   try {
     const response = await fetch(tokenEndpoint, {
       method: "POST",
@@ -42,6 +51,14 @@ exports.getSpotifyToken = onRequest(
       } catch (error) {
         response.status(500).send("Error getting Spotify access token");
       }
+    });
+  },
+);
+
+exports.corsProxy = onRequest(
+  (request, response) => {
+    cors(request, response, () => {
+      corsServer.emit("request", request, response);
     });
   },
 );
