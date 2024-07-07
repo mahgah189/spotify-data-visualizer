@@ -4,11 +4,11 @@
   border-radius: 2em;
   caret-color: white;
   color: #c7c7c7;
-  font-size: 1.1rem;
+  font-size: 1rem;
   height: 3em;
   padding: 1em 2em 1em 2.75em;
   transition: background-color 0.1s;
-  width: 400px;
+  width: 80vw;
 }
 
 .track-analysis-input:focus {
@@ -36,7 +36,7 @@
 .track-analysis-input--label {
   text-align: center;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 0.5em;
 }
 
@@ -50,7 +50,7 @@
 .track-analysis-input--submit {
   border: none;
   border-radius: 1.5em;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: 0.05em;
   margin-top: 1.5em;
@@ -62,11 +62,11 @@
 
 .fa-magnifying-glass {
   position: absolute;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: inherit;
   top: 50%;
   transform: translateY(-50%);
-  left: 5%;
+  left: 15px;
 }
 
 @media (min-width: 768px) {
@@ -76,31 +76,7 @@
   }
 
   .track-analysis-input--label {
-    font-size: 2rem;
-  }
-
-  .fa-magnifying-glass {
-    left: 4%;
-  }
-
-}
-
-@media (min-width: 1080px) {
-  
-  .track-analysis-input {
-    width: 768px;
-  }
-
-  .fa-magnifying-glass {
-    left: 3%;
-  }
-
-}
-
-@media (max-width: 470px) {
-  
-  .track-analysis-input {
-    width: 200px;
+    font-size: 1.25rem;
   }
 
 }
