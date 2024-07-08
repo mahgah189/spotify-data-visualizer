@@ -17,7 +17,6 @@ const getCanvas = async (tracks, accessToken) => {
     "accept": "application/protobuf",
     "content-type": "application/x-www-form-urlencoded",
     "accept-language": "en",
-    "user-agent": "Spotify/8.5.49 iOS/Version 13.3.1 (Build 17D50)",
     "accept-encoding": "gzip, deflate, br",
     "authorization": `Bearer ${accessToken}`,
   }

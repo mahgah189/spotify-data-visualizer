@@ -9,6 +9,8 @@ function CanvasPlayer() {
     canvas: [canvas, changeCanvas]
   } = useOutletContext();
 
+  const [canvasMinimized, changeCanvasMinimized] = React.useState(true);
+
   console.log(canvas.canvasUrl)
 
   return (
@@ -16,10 +18,12 @@ function CanvasPlayer() {
       <div className="canvas--container">
         {canvas.canvasUrl && 
           <video 
-            className="canvas--video"
+            className="canvas-video--minimized"
             autoPlay
             loop
             key={canvas.canvasUrl}
+            webkit-playsinline={true}
+            playsInline
           >
             <source src={canvas.canvasUrl} />
           </video>}

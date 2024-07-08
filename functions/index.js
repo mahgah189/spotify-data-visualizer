@@ -9,9 +9,13 @@ const corsServer = corsAnywhere.createServer({
   originWhitelist: [
     "http://localhost:5173",
     "https://dansen.web.app",
+    "https://www.dansen.web.app",
   ],
   requireHeader: ["origin", "x-requested-with"],
   removeHeaders: ["cookie", "cookie2"],
+  setHeaders: {
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, User-Agent",
+  },
 });
 
 const getSpotifyAccessToken = async (clientId, clientSecret) => {

@@ -7,7 +7,6 @@ function Stats() {
   return (
     <div>
       <TrackStatsCard />
-      <TracklistMenu />
     </div>
   )
 };
