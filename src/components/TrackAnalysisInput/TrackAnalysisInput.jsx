@@ -37,7 +37,7 @@ function TrackAnalysisInput() {
       try {
         const canvasResponse = await getCanvas(tracksArray, canvasToken.accessToken);
         setCanvas(canvasResponse.canvasesList[0].canvasUrl);
-        navigate("/stats");
+        navigate("/search");
       } catch(error) {
         console.log(error)
       }

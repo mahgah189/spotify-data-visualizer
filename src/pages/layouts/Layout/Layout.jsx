@@ -36,15 +36,8 @@ function Layout() {
     }
   });
 
-  const toggleMenu = (menuState, setMenuState) => {
-    menuState === "hamburger-closed" 
-      ? setMenuState("") 
-      : setMenuState("hamburger-closed")
-  }
-
   return (
     <div className="site-wrapper">
-      <NavMenu toggleMenu={ toggleMenu } />
       <div className="layout-outlet">
         <Outlet 
           context={{
@@ -52,10 +45,10 @@ function Layout() {
             trackArray: [tracksArray, changeTracksArray],
             canvas: [canvas, changeCanvas],
             currentTrack: [currentTrackData, changeCurrentTrackData],
-            toggleMenu: toggleMenu,
           }} 
         />
       </div>
+      <NavMenu />
     </div>
   )
 };

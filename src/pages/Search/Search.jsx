@@ -1,12 +1,11 @@
 import React from "react";
 import "./Search.css";
-import TrackAnalysisInput from "/src/components/TrackAnalysisInput/TrackAnalysisInput";
+import TrackStatsCard from "/src/components/TrackStatsCard/TrackStatsCard";
 
 function Search() {
-  
   return (
     <div>
-      <TrackAnalysisInput />
+      <TrackStatsCard />
     </div>
   )
 };

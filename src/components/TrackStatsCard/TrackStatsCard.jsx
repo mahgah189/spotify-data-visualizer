@@ -1,6 +1,6 @@
 import React from "react";
 import "./TrackStatsCard.css";
-import CanvasPlayer from "./CanvasPlayer/CanvasPlayer";
+import CanvasPlayer from "/src/components/CanvasPlayer/CanvasPlayer";
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 function TrackStatsCard() {

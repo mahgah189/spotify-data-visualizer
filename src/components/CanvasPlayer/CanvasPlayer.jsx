@@ -22,7 +22,6 @@ function CanvasPlayer() {
             autoPlay
             loop
             key={canvas.canvasUrl}
-            webkit-playsinline={true}
             playsInline
           >
             <source src={canvas.canvasUrl} />

@@ -2,19 +2,19 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
+import Home from "/src/pages/Home/Home";
+import Playlist from "/src/pages/Playlist/Playlist";
 import Search from "/src/pages/Search/Search";
-import About from "/src/pages/About/About";
 import Layout from "/src/pages/layouts/Layout/Layout";
-import Stats from "/src/pages/Stats/Stats";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Search />} />
-          <Route path="/stats" element={<Stats />} />
-          <Route path="/about" element={<About />} />
+          <Route index element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/playlist" element={<Playlist />} />
         </Route>
       </Routes>
     </BrowserRouter>

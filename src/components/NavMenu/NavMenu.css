@@ -1,4 +1,4 @@
-.header {
+/* .header {
   align-items: center;
   bottom: 100vh;
   display: grid;
@@ -10,21 +10,19 @@
   transform: translateY(100%);
   width: 100%;
   z-index: 1000;
-}
+} */
 
 .nav-menu--container {
   background-color: black;
-  height: 100vh;
-  padding: 2.5em 2.5em;
+  height: 5em;
   position: fixed;
-  top: 0;
+  bottom: 0;
   width: 100%;
   z-index: 1000;
 }
 
 .nav-menu--main {
   display: flex;
-  flex-direction: column;
   font-size: 1.25rem;
   gap: 1em;
   position: relative;
@@ -32,7 +30,6 @@
 
 .nav-menu--links-container {
   display: flex;
-  flex-direction: column;
   gap: 1em;
   margin-top: 1em;
   margin-left: 1em;
@@ -50,7 +47,7 @@
 
 /* Hamburger menu */
 
-.nav-menu--hamburger {
+/* .nav-menu--hamburger {
   background: none;
   border: none;
   grid-column: -1;
@@ -66,7 +63,7 @@
 .fa-x {
   color: #e8e8e8;
   font-size: 1.5rem;
-}
+} */
 
 @media (min-width: 768px) {
 
