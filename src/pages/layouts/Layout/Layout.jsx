@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./Layout.css";
-import NavMenu from "/src/components/NavMenu/NavMenu";
+import NavMenu from "/src/components/navMenu/NavMenu/NavMenu";
 
 function Layout() {
   const [currentTrackId, changeCurrentTrackId] = React.useState(null);

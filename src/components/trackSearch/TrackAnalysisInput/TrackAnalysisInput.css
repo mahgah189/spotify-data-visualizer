@@ -43,8 +43,6 @@
 .track-analysis-input--input-wrapper {
   position: relative;
   text-align: center;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .track-analysis-input--submit {
@@ -66,7 +64,7 @@
   color: inherit;
   top: 50%;
   transform: translateY(-50%);
-  left: 15px;
+  left: 30px;
 }
 
 @media (min-width: 768px) {
